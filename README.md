@@ -15,11 +15,11 @@
 [Сборка пректа на Gulp]()
 
 ## Установленные NPM пакеты
-[gulp] Сборщик Gulp
-[gulp-less] Компиляция Less файлов
-[gulp-babel] Преобразует Java Script в старый стандарт
-[gulp-concat] Объединение нескольких файлов в один
-[gulp-uglify] Сжатие и оптимизация Java Script кода
-[gulp-renam] Переименовывает файлы
-[gulp-clean-css] Минификация и оптимизация CSS файлов
+[gulp] Сборщик Gulp  
+[gulp-less] Компиляция Less файлов  
+[gulp-babel] Преобразует Java Script в старый стандарт  
+[gulp-concat] Объединение нескольких файлов в один  
+[gulp-uglify] Сжатие и оптимизация Java Script кода  
+[gulp-renam] Переименовывает файлы  
+[gulp-clean-css] Минификация и оптимизация CSS файлов  
 [del] Удаление каталогов и файлов
