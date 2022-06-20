@@ -6,13 +6,20 @@ const cleanCSS = require('gulp-clean-css');
 const babel = require('gulp-babel');
 const uglify = require('gulp-uglify');
 const concat = require('gulp-concat');
-const imagemin = require('gulp-imagemin');
 const sourcemaps = require('gulp-sourcemaps');
 const autoprefixer = require('gulp-autoprefixer');
+// const imagemin = require('gulp-imagemin');
+const htmlmin = require('gulp-htmlmin');
 const del = require('del');
+
+import imagemin from 'gulp-imagemin';
 
 // Пути к файлам проекта
 const paths = {
+  html: {
+    src: 'src/*.html',
+    dest: 'dist'
+  },
   styles: {
     src: 'src/styles/**/*.less',
     dest: 'dist/css/'
@@ -23,7 +30,7 @@ const paths = {
   },
   images: {
     src: 'src/img/*',
-    dest: 'dist/img'
+    dest: 'dist/img/'
   }
 }
 
@@ -31,6 +38,13 @@ const paths = {
 function clean() {
   return del(['dist'])
 }
+
+// Обработка html
+function html() {
+  return gulp.src(paths.html.src)
+    .pipe(htmlmin({ collapseWhitespace: true }))
+    .pipe(gulp.dest('dist'));
+};
 
 // Обработка стилей
 function styles() {
@@ -65,11 +79,14 @@ function scripts() {
 }
 
 // Обработка изображений
-function images() {
-  return gulp.src(paths.images.src)
-    .pipe(imagemin())
-    .pipe(gulp.dest(paths.images.dest))
-}
+// function images() {
+//   return gulp.src(paths.images.src)
+//     .pipe(imagemin({
+//       progressive: true,
+//       optimizationLevel: 3
+//     }))
+//     .pipe(gulp.dest(paths.images.dest))
+// }
 
 // Слежение за изменениями в файлах
 function watch() {
@@ -78,10 +95,11 @@ function watch() {
 }
 
 // Последовательное и паралельное выполнение  задач
-const build = gulp.series(clean, gulp.parallel(styles, scripts, images), watch)
+const build = gulp.series(clean, html, gulp.parallel(styles, scripts), watch)
 
 exports.clean = clean;
-exports.images = images;
+exports.html = html;
+// exports.images = images;
 exports.styles = styles;
 exports.scripts = scripts;
 exports.watch = watch;

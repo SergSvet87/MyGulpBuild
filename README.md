@@ -22,7 +22,8 @@
 [gulp-uglify] Сжатие и оптимизация Java Script кода  
 [gulp-rename] Переименовывает файлы  
 [gulp-sourcemaps] Переименовывает файлы  
-[gulp-autoprefixer]   
-[gulp-imagemin]   
+[gulp-autoprefixer] Добавление префиксов в CSS код  
+[gulp-imagemin] Сжатие и уменьшение объема изоражений  
+[gulp-clean-css] Минификация и оптимизация HTML файлов  
 [gulp-clean-css] Минификация и оптимизация CSS файлов  
 [del] Удаление каталогов и файлов
