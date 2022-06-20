@@ -1,9 +1,2 @@
-// class people{
-//   sayhi(){
-//     console.log("hi");
-//   }
-// }
-// let b = new people()
-// b.sayhi()
-let a = 'Hello, Serg!'
+let a = 'Hi!'
 console.log(a);
