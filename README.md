@@ -12,7 +12,7 @@
 4. Писать свой код и наслаждаться автоматической сборкой проекта.
 
 ## Ссылки
-[Сборка пректа на Gulp]()
+[Сборка пректа на Gulp](https://sergsvet87.github.io/MyGulpBuild/)
 
 ## Установленные NPM пакеты
 [gulp] Сборщик Gulp  
@@ -20,6 +20,9 @@
 [gulp-babel] Преобразует Java Script в старый стандарт  
 [gulp-concat] Объединение нескольких файлов в один  
 [gulp-uglify] Сжатие и оптимизация Java Script кода  
-[gulp-renam] Переименовывает файлы  
+[gulp-rename] Переименовывает файлы  
+[gulp-sourcemaps] Переименовывает файлы  
+[gulp-autoprefixer]   
+[gulp-imagemin]   
 [gulp-clean-css] Минификация и оптимизация CSS файлов  
 [del] Удаление каталогов и файлов
