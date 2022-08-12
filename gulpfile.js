@@ -18,6 +18,8 @@ const size = require('gulp-size');
 const newer = require('gulp-newer');
 const ts = require('gulp-typescript');
 const coffee = require('gulp-coffee');
+const ttf2woff = require('gulp-ttf2woff');
+const ttf2woff2 = require('gulp-ttf2woff2');
 const browserSync = require('browser-sync').create();
 const del = require('del');
 
@@ -30,6 +32,10 @@ const paths = {
   html: {
     src: 'src/*.html',
     dest: 'dist/'
+  },
+  fonts: {
+    src: 'src/fonts/*.ttf',
+    dest: 'dist/fonts/'
   },
   styles: {
     src: ['src/styles/**/*.sass', 'src/styles/**/*.scss', 'src/styles/**/*.styl', 'src/styles/**/*.less', 'src/styles/**/*.css'],
@@ -74,6 +80,18 @@ function html() {
     .pipe(browserSync.stream())
 };
 
+// Обработка шрифтов
+function fonts() {
+  return gulp.src(paths.fonts.src)
+    .pipe(ttf2woff())
+    .pipe(ttf2woff2())
+    .pipe(size({
+      showFiles: true
+    }))
+    .pipe(gulp.dest(paths.fonts.dest))
+    .pipe(browserSync.stream())
+};
+
 // Обработка стилей
 function styles() {
   return gulp.src(paths.styles.src)
@@ -104,13 +122,13 @@ function styles() {
 function scripts() {
   return gulp.src(paths.scripts.src)
     .pipe(sourcemaps.init())
-    // .pipe(coffee({
-    //   bare: true
-    // }))
-    // .pipe(ts({
-    //   noImplicitAny: true,
-    //   outFile: 'main.min.js'
-    // }))
+    /* .pipe(coffee({
+       bare: true
+     }))
+     .pipe(ts({
+       noImplicitAny: true,
+       outFile: 'main.min.js'
+    })) */
     .pipe(babel({
       presets: ['@babel/env']
     }))
@@ -147,17 +165,19 @@ function watch() {
   });
   gulp.watch(paths.html.dest).on('change', browserSync.reload)
   gulp.watch(paths.html.src, html)
+  gulp.watch(paths.fonts.src, fonts)
   gulp.watch(paths.styles.src, styles)
   gulp.watch(paths.scripts.src, scripts)
   gulp.watch(paths.images.src, images)
 }
 
 // Последовательное и паралельное выполнение  задач
-const build = gulp.series(clean, html, gulp.parallel(styles, scripts, images), watch)
+const build = gulp.series(clean, html, gulp.parallel(fonts, styles, scripts, images), watch)
 
 exports.clean = clean;
 exports.pug = pug;
 exports.html = html;
+exports.fonts = fonts;
 exports.images = images;
 exports.styles = styles;
 exports.scripts = scripts;
